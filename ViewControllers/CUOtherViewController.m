@@ -1,34 +1,27 @@
 //
-//  CUDetailViewController.m
+//  CUOtherViewController.m
 //  CUArchitectureDemo
 //
 //  Created by yuguang on 29/8/14.
 //  Copyright (c) 2014 lion. All rights reserved.
 //
 
-#import "CUDetailViewController.h"
+#import "CUOtherViewController.h"
 #import "CUDataDAO.h"
 #import "CUDataModel.h"
 
-@interface CUDetailViewController ()
+@interface CUOtherViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *displayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dataLabel;
+
 @end
 
-@implementation CUDetailViewController
-
-- (void)awakeFromNib {
-}
-
-- (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+@implementation CUOtherViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view.
-  
-  [self updateLabel];
+  self.dataLabel.text = [[CUDataDAO selectOtherData].data stringValue];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,21 +29,13 @@
   // Dispose of any resources that can be recreated.
 }
 
-- (void)updateLabel {
-  int dataB = [[CUDataDAO selectData].data intValue];
-  int dataC = [[CUDataDAO selectOtherData].data intValue];
-  
-  self.displayLabel.text = [@(dataB + dataC) stringValue];
-}
-
 #pragma mark - action
 
 - (IBAction)changeButtonClicked:(id)sender {
-  int value = arc4random() % 100;
-  [CUDataDAO setData:value];
-  
-  [self updateLabel];
-  
+  [CUDataDAO setOtherData:arc4random() % 100];
+
+  self.dataLabel.text = [[CUDataDAO selectOtherData].data stringValue];
+
   [[NSNotificationCenter defaultCenter] postNotificationName:kCUDataChangedNotification
                                                       object:nil
                                                     userInfo:nil];

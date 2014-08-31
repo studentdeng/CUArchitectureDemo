@@ -1,5 +1,5 @@
 //
-//  CUDetailViewController.h
+//  CUOtherViewController.h
 //  CUArchitectureDemo
 //
 //  Created by yuguang on 29/8/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class CUDetailViewController;
-
-@interface CUDetailViewController : UIViewController
+@interface CUOtherViewController : UIViewController
 
 @end

@@ -11,33 +11,42 @@
 #import "CUDataModel.h"
 #import "CUDetailViewController.h"
 
-@interface CUMainViewController ()<CUDetailViewControllerDelegate>
+@interface CUMainViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 @end
 
 @implementation CUMainViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
-      // Custom initialization
-  }
-  return self;
+- (void)awakeFromNib {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(handleDataChangedNotification)
+                                               name:kCUDataChangedNotification
+                                             object:nil];
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view.
+  [self updateLabel];
+}
+
+- (void)updateLabel {
+  int dataB = [[CUDataDAO selectData].data intValue];
+  int dataC = [[CUDataDAO selectOtherData].data intValue];
   
-  self.displayLabel.text = [[CUDataDAO selectData].data stringValue];
+  self.displayLabel.text = [@(dataB + dataC) stringValue];
 }
 
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
+#pragma mark - Notification
 
+- (void)handleDataChangedNotification {
+  [self updateLabel];
+}
 
 //// fix data inconsistenly
 //- (void)viewWillAppear:(BOOL)animated {
@@ -51,19 +60,19 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  if ([segue.identifier isEqualToString:@"push"]) {
-    CUDetailViewController *vc = [segue destinationViewController];
-    if ([vc isKindOfClass:[CUDetailViewController class]]) {
-      vc.delegate = self;
-    }
-  }
+//  if ([segue.identifier isEqualToString:@"push"]) {
+//    CUDetailViewController *vc = [segue destinationViewController];
+//    if ([vc isKindOfClass:[CUDetailViewController class]]) {
+//      vc.delegate = self;
+//    }
+//  }
 }
 
-#pragma mark - CUDetailViewControllerDelegate
-
-- (void)detailVC:(CUDetailViewController *)vc dataChanged:(NSNumber *)data {
-  self.displayLabel.text = [data stringValue];
-}
+//#pragma mark - CUDetailViewControllerDelegate
+//
+//- (void)detailVC:(CUDetailViewController *)vc dataChanged:(NSNumber *)data {
+//  self.displayLabel.text = [data stringValue];
+//}
 
 
 @end

@@ -13,6 +13,8 @@
 static int s_data = 55;
 static __strong NSTimer *s_timer = nil;
 
+static int s_otherData = 15;
+
 @implementation CUDataDAO
 
 + (void)initialize {
@@ -41,6 +43,20 @@ static __strong NSTimer *s_timer = nil;
 + (void)setData:(int)data {
   if (data != s_data) {
     s_data = data;
+  }
+}
+
++ (CUDataModel *)selectOtherData {
+  NSLog(@"%s", sel_getName(_cmd));
+  
+  CUDataModel *model = [CUDataModel new];
+  model.data = @(s_otherData);
+  return model;
+}
+
++ (void)setOtherData:(int)data {
+  if (data != s_otherData) {
+    s_otherData = data;
   }
 }
 

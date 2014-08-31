@@ -15,4 +15,7 @@
 + (void)setData:(int)data;
 + (void)randomData;
 
++ (CUDataModel *)selectOtherData;
++ (void)setOtherData:(int)data;
+
 @end

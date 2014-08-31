@@ -24,6 +24,8 @@
 		13C6319819B06EB2005D3724 /* CUMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C6319419B06EB2005D3724 /* CUMainViewController.m */; };
 		13C6319D19B06EDF005D3724 /* CUDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C6319C19B06EDF005D3724 /* CUDataModel.m */; };
 		13C631A219B06F1D005D3724 /* CUDataDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C631A119B06F1D005D3724 /* CUDataDAO.m */; };
+		13C631A519B09F3D005D3724 /* CUOtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C631A419B09F3D005D3724 /* CUOtherViewController.m */; };
+		13C631A819B0A0AD005D3724 /* CUNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C631A719B0A0AD005D3724 /* CUNotification.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,10 @@
 		13C6319C19B06EDF005D3724 /* CUDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUDataModel.m; sourceTree = "<group>"; };
 		13C631A019B06F1D005D3724 /* CUDataDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUDataDAO.h; sourceTree = "<group>"; };
 		13C631A119B06F1D005D3724 /* CUDataDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUDataDAO.m; sourceTree = "<group>"; };
+		13C631A319B09F3D005D3724 /* CUOtherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUOtherViewController.h; sourceTree = "<group>"; };
+		13C631A419B09F3D005D3724 /* CUOtherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUOtherViewController.m; sourceTree = "<group>"; };
+		13C631A619B0A0AD005D3724 /* CUNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUNotification.h; sourceTree = "<group>"; };
+		13C631A719B0A0AD005D3724 /* CUNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUNotification.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +135,8 @@
 				13C6316719B06D82005D3724 /* Main.storyboard */,
 				13C6316D19B06D82005D3724 /* Images.xcassets */,
 				13C6315C19B06D82005D3724 /* Supporting Files */,
+				13C631A619B0A0AD005D3724 /* CUNotification.h */,
+				13C631A719B0A0AD005D3724 /* CUNotification.m */,
 			);
 			path = CUArchitectureDemo;
 			sourceTree = "<group>";
@@ -169,6 +177,8 @@
 				13C6319219B06EB2005D3724 /* CUDetailViewController.m */,
 				13C6319319B06EB2005D3724 /* CUMainViewController.h */,
 				13C6319419B06EB2005D3724 /* CUMainViewController.m */,
+				13C631A319B09F3D005D3724 /* CUOtherViewController.h */,
+				13C631A419B09F3D005D3724 /* CUOtherViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -291,7 +301,9 @@
 			files = (
 				13C631A219B06F1D005D3724 /* CUDataDAO.m in Sources */,
 				13C6316619B06D82005D3724 /* CUAppDelegate.m in Sources */,
+				13C631A819B0A0AD005D3724 /* CUNotification.m in Sources */,
 				13C6319819B06EB2005D3724 /* CUMainViewController.m in Sources */,
+				13C631A519B09F3D005D3724 /* CUOtherViewController.m in Sources */,
 				13C6316219B06D82005D3724 /* main.m in Sources */,
 				13C6319719B06EB2005D3724 /* CUDetailViewController.m in Sources */,
 				13C6319D19B06EDF005D3724 /* CUDataModel.m in Sources */,
