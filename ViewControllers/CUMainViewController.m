@@ -9,8 +9,9 @@
 #import "CUMainViewController.h"
 #import "CUDataDAO.h"
 #import "CUDataModel.h"
+#import "CUDetailViewController.h"
 
-@interface CUMainViewController ()
+@interface CUMainViewController ()<CUDetailViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
 @end
@@ -38,22 +39,31 @@
 }
 
 
-// fix data inconsistenly
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  
-  self.displayLabel.text = [[CUDataDAO selectData].data stringValue];
-}
+//// fix data inconsistenly
+//- (void)viewWillAppear:(BOOL)animated {
+//  [super viewWillAppear:animated];
+//  
+//  self.displayLabel.text = [[CUDataDAO selectData].data stringValue];
+//}
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+  if ([segue.identifier isEqualToString:@"push"]) {
+    CUDetailViewController *vc = [segue destinationViewController];
+    if ([vc isKindOfClass:[CUDetailViewController class]]) {
+      vc.delegate = self;
+    }
+  }
 }
-*/
+
+#pragma mark - CUDetailViewControllerDelegate
+
+- (void)detailVC:(CUDetailViewController *)vc dataChanged:(NSNumber *)data {
+  self.displayLabel.text = [data stringValue];
+}
+
 
 @end

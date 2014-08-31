@@ -44,6 +44,10 @@
   [CUDataDAO setData:value];
   
   self.displayLabel.text = [@(value) stringValue];
+  
+  if ([self.delegate respondsToSelector:@selector(detailVC:dataChanged:)]) {
+    [self.delegate detailVC:self dataChanged:@(value)];
+  }
 }
 
 /*

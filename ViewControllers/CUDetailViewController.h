@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class CUDetailViewController;
+@protocol CUDetailViewControllerDelegate <NSObject>
+
+- (void)detailVC:(CUDetailViewController *)vc dataChanged:(NSNumber *)data;
+
+@end
+
 @interface CUDetailViewController : UIViewController
+
+@property (nonatomic, weak) id<CUDetailViewControllerDelegate> delegate;
 
 @end
