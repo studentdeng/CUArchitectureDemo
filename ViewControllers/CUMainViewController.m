@@ -37,6 +37,14 @@
   // Dispose of any resources that can be recreated.
 }
 
+
+// fix data inconsistenly
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  self.displayLabel.text = [[CUDataDAO selectData].data stringValue];
+}
+
 /*
 #pragma mark - Navigation
 

@@ -26,6 +26,9 @@ static __strong NSTimer *s_timer = nil;
 }
 
 + (CUDataModel *)selectData {
+  
+  NSLog(@"%s", sel_getName(_cmd));
+  
   CUDataModel *model = [CUDataModel new];
   model.data = @(s_data);
   return model;
