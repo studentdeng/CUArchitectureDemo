@@ -12,4 +12,6 @@
 
 @interface CUDetailViewController : UIViewController
 
+- (void)updateLabel;
+
 @end

@@ -14,6 +14,7 @@
 @interface CUMainViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
+@property (weak, nonatomic) CUDetailViewController *vc;
 @end
 
 @implementation CUMainViewController
@@ -46,6 +47,7 @@
 
 - (void)handleDataChangedNotification {
   [self updateLabel];
+  [self.vc updateLabel];
 }
 
 //// fix data inconsistenly
@@ -60,12 +62,12 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//  if ([segue.identifier isEqualToString:@"push"]) {
-//    CUDetailViewController *vc = [segue destinationViewController];
-//    if ([vc isKindOfClass:[CUDetailViewController class]]) {
-//      vc.delegate = self;
-//    }
-//  }
+  if ([segue.identifier isEqualToString:@"push"]) {
+    CUDetailViewController *vc = [segue destinationViewController];
+    if ([vc isKindOfClass:[CUDetailViewController class]]) {
+      self.vc = vc;
+    }
+  }
 }
 
 //#pragma mark - CUDetailViewControllerDelegate

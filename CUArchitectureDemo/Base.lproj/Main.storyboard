@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller - A-->
+        <!--Main View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="CUMainViewController" sceneMemberID="viewController">
@@ -36,7 +36,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="A" id="Pjl-T7-lBO"/>
+                    <navigationItem key="navigationItem" id="Pjl-T7-lBO"/>
                     <connections>
                         <outlet property="displayLabel" destination="2al-Xd-zdU" id="kwd-st-q7A"/>
                     </connections>
@@ -45,7 +45,7 @@
             </objects>
             <point key="canvasLocation" x="1201" y="138"/>
         </scene>
-        <!--Detail View Controller - B-->
+        <!--Detail View Controller-->
         <scene sceneID="wbO-Pq-oty">
             <objects>
                 <viewController id="tdD-El-VpN" customClass="CUDetailViewController" sceneMemberID="viewController">
@@ -76,7 +76,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="B" id="OF7-yw-IQs"/>
+                    <navigationItem key="navigationItem" id="OF7-yw-IQs"/>
                     <connections>
                         <outlet property="displayLabel" destination="dJM-g5-doy" id="Be9-vU-HP3"/>
                     </connections>
@@ -104,7 +104,7 @@
             </objects>
             <point key="canvasLocation" x="809" y="138"/>
         </scene>
-        <!--Other View Controller - C-->
+        <!--Other View Controller-->
         <scene sceneID="gfG-rp-f1k">
             <objects>
                 <viewController id="eHh-Gb-iok" customClass="CUOtherViewController" sceneMemberID="viewController">
@@ -135,7 +135,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="C" id="nNK-wx-fY4"/>
+                    <navigationItem key="navigationItem" id="nNK-wx-fY4"/>
                     <connections>
                         <outlet property="dataLabel" destination="uu7-5e-yiL" id="25y-aZ-oP3"/>
                     </connections>
