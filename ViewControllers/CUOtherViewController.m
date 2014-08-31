@@ -21,12 +21,18 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view.
-  self.dataLabel.text = [[CUDataDAO selectOtherData].data stringValue];
+  [self updateLabel];
 }
 
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+  [self updateLabel];
+}
+
+- (void)updateLabel {
+  int dataB = [[CUDataDAO selectData].data intValue];
+  int dataC = [[CUDataDAO selectOtherData].data intValue];
+  
+  self.dataLabel.text = [@(dataB + dataC) stringValue];
 }
 
 #pragma mark - action
@@ -34,7 +40,7 @@
 - (IBAction)changeButtonClicked:(id)sender {
   [CUDataDAO setOtherData:arc4random() % 100];
 
-  self.dataLabel.text = [[CUDataDAO selectOtherData].data stringValue];
+  [self updateLabel];
 
   [[NSNotificationCenter defaultCenter] postNotificationName:kCUDataChangedNotification
                                                       object:nil
