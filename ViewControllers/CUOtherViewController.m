@@ -9,14 +9,24 @@
 #import "CUOtherViewController.h"
 #import "CUDataDAO.h"
 #import "CUDataModel.h"
+#import "CUDataSource.h"
 
 @interface CUOtherViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *dataLabel;
+@property (strong, nonatomic) CUDataSource *dataSource;
 
 @end
 
 @implementation CUOtherViewController
+
+- (void)awakeFromNib {
+  self.dataSource = [CUDataSource new];
+  [self.dataSource addObserver:self
+                    forKeyPath:@"data"
+                       options:NSKeyValueObservingOptionNew
+                       context:NULL];
+}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -24,15 +34,8 @@
   [self updateLabel];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-  [self updateLabel];
-}
-
 - (void)updateLabel {
-  int dataB = [[CUDataDAO selectData].data intValue];
-  int dataC = [[CUDataDAO selectOtherData].data intValue];
-  
-  self.dataLabel.text = [@(dataB + dataC) stringValue];
+  self.dataLabel.text = [self.dataSource.data stringValue];
 }
 
 #pragma mark - action
@@ -40,22 +43,17 @@
 - (IBAction)changeButtonClicked:(id)sender {
   [CUDataDAO setOtherData:arc4random() % 100];
 
-  [self updateLabel];
-
   [[NSNotificationCenter defaultCenter] postNotificationName:kCUDataChangedNotification
                                                       object:nil
                                                     userInfo:nil];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - notification
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if (object == self.dataSource && [keyPath isEqualToString:@"data"]) {
+    [self updateLabel];
+  }
 }
-*/
 
 @end

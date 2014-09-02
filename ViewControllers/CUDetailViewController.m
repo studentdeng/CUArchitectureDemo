@@ -9,19 +9,26 @@
 #import "CUDetailViewController.h"
 #import "CUDataDAO.h"
 #import "CUDataModel.h"
+#import "CUDataSource.h"
 
 @interface CUDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
+@property (strong, nonatomic) CUDataSource *dataSource;
 @end
 
 @implementation CUDetailViewController
 
 - (void)awakeFromNib {
+  self.dataSource = [CUDataSource new];
+  [self.dataSource addObserver:self
+                    forKeyPath:@"data"
+                       options:NSKeyValueObservingOptionNew
+                       context:NULL];
 }
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [self.dataSource removeObserver:self forKeyPath:@"data"];
 }
 
 - (void)viewDidLoad {
@@ -37,10 +44,7 @@
 }
 
 - (void)updateLabel {
-  int dataB = [[CUDataDAO selectData].data intValue];
-  int dataC = [[CUDataDAO selectOtherData].data intValue];
-  
-  self.displayLabel.text = [@(dataB + dataC) stringValue];
+  self.displayLabel.text = [self.dataSource.data stringValue];
 }
 
 #pragma mark - action
@@ -48,23 +52,17 @@
 - (IBAction)changeButtonClicked:(id)sender {
   int value = arc4random() % 100;
   [CUDataDAO setData:value];
-  
-  [self updateLabel];
-  
   [[NSNotificationCenter defaultCenter] postNotificationName:kCUDataChangedNotification
                                                       object:nil
                                                     userInfo:nil];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Notification
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if (object == self.dataSource && [keyPath isEqualToString:@"data"]) {
+    [self updateLabel];
+  }
 }
-*/
 
 @end

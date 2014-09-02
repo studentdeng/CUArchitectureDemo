@@ -9,25 +9,27 @@
 #import "CUMainViewController.h"
 #import "CUDataDAO.h"
 #import "CUDataModel.h"
-#import "CUDetailViewController.h"
+#import "CUDataSource.h"
 
 @interface CUMainViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *displayLabel;
-@property (weak, nonatomic) CUDetailViewController *vc;
+@property (strong, nonatomic) CUDataSource *dataSource;
+
 @end
 
 @implementation CUMainViewController
 
 - (void)awakeFromNib {
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(handleDataChangedNotification)
-                                               name:kCUDataChangedNotification
-                                             object:nil];
+  self.dataSource = [CUDataSource new];
+  [self.dataSource addObserver:self
+                    forKeyPath:@"data"
+                       options:NSKeyValueObservingOptionNew
+                       context:NULL];
 }
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [self.dataSource removeObserver:self forKeyPath:@"data"];
 }
 
 - (void)viewDidLoad {
@@ -37,44 +39,15 @@
 }
 
 - (void)updateLabel {
-  int dataB = [[CUDataDAO selectData].data intValue];
-  int dataC = [[CUDataDAO selectOtherData].data intValue];
-  
-  self.displayLabel.text = [@(dataB + dataC) stringValue];
+  self.displayLabel.text = [self.dataSource.data stringValue];
 }
 
 #pragma mark - Notification
 
-- (void)handleDataChangedNotification {
-  [self updateLabel];
-  [self.vc updateLabel];
-}
-
-//// fix data inconsistenly
-//- (void)viewWillAppear:(BOOL)animated {
-//  [super viewWillAppear:animated];
-//  
-//  self.displayLabel.text = [[CUDataDAO selectData].data stringValue];
-//}
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-  if ([segue.identifier isEqualToString:@"push"]) {
-    CUDetailViewController *vc = [segue destinationViewController];
-    if ([vc isKindOfClass:[CUDetailViewController class]]) {
-      self.vc = vc;
-    }
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if (object == self.dataSource && [keyPath isEqualToString:@"data"]) {
+    [self updateLabel];
   }
 }
-
-//#pragma mark - CUDetailViewControllerDelegate
-//
-//- (void)detailVC:(CUDetailViewController *)vc dataChanged:(NSNumber *)data {
-//  self.displayLabel.text = [data stringValue];
-//}
-
 
 @end

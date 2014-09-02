@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13BCF53719B59BF400C51C2F /* CUDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 13BCF53619B59BF400C51C2F /* CUDataSource.m */; };
 		13C6315619B06D82005D3724 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C6315519B06D82005D3724 /* Foundation.framework */; };
 		13C6315819B06D82005D3724 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C6315719B06D82005D3724 /* CoreGraphics.framework */; };
 		13C6315A19B06D82005D3724 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C6315919B06D82005D3724 /* UIKit.framework */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13BCF53519B59BF400C51C2F /* CUDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUDataSource.h; sourceTree = "<group>"; };
+		13BCF53619B59BF400C51C2F /* CUDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUDataSource.m; sourceTree = "<group>"; };
 		13C6315219B06D82005D3724 /* CUArchitectureDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CUArchitectureDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C6315519B06D82005D3724 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		13C6315719B06D82005D3724 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -188,6 +191,8 @@
 			children = (
 				13C6319B19B06EDF005D3724 /* CUDataModel.h */,
 				13C6319C19B06EDF005D3724 /* CUDataModel.m */,
+				13BCF53519B59BF400C51C2F /* CUDataSource.h */,
+				13BCF53619B59BF400C51C2F /* CUDataSource.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13BCF53719B59BF400C51C2F /* CUDataSource.m in Sources */,
 				13C631A219B06F1D005D3724 /* CUDataDAO.m in Sources */,
 				13C6316619B06D82005D3724 /* CUAppDelegate.m in Sources */,
 				13C631A819B0A0AD005D3724 /* CUNotification.m in Sources */,
@@ -511,6 +517,7 @@
 				13C6318619B06D82005D3724 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		13C6318719B06D82005D3724 /* Build configuration list for PBXNativeTarget "CUArchitectureDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +526,7 @@
 				13C6318919B06D82005D3724 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
